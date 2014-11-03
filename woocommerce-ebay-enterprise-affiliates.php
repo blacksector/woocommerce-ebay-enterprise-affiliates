@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce - eBay Enterprise Affiliates
  * Plugin URI: https://pmgarman.me/woocommerce-ebay-enterprise-affiliates/
  * Description: Easily integrate your eBay Enterprise Affiliate Network code into your WooCommerce site.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Patrick Garman
  * Author URI: https://pmgarman.me
  * Requires at least: 4.0
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_eBay_Enterprise_Affiliates {
 
-	public $version   = '1.0.0';
+	public $version   = '1.0.1';
 	public $endpoint  = 'https://t.pepperjamnetwork.com/track';
 
 	private $defaults = array();

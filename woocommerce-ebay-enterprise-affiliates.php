@@ -107,11 +107,9 @@ class WC_eBay_Enterprise_Affiliates {
 				$id = ! empty( $item['variation_id'] ) ?  $item['variation_id'] : $item['product_id'];
 
 				/**
-				 * Get the product SKU
+				 * Set the unique product ID
 				 */
-				$productmeta                    = new WC_Product( $id );
-				$sku                            = $productmeta->post->sku;
-				$item_query_args[ 'ITEM' . $i ] = $sku;
+				$item_query_args[ 'ITEM' . $i ] = $id;
 
 				/**
 				 * Get the product QTY

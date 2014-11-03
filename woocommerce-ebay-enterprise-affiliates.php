@@ -89,12 +89,10 @@ class WC_eBay_Enterprise_Affiliates {
 		$item_query_args = array();
 
 		/**
-		 * TODO: Discount is never actually passed, the documentation seems to be reducing EVERY product price by the
-		 * orders total discount... going to wait for confirmation on how to implement the discount before adding it.
-		 *
-		 * PDF Documentation: http://c.pmgr.mn/pnWA
+		 * Get total order level discount and then get average discount splitting it across all products.
 		 */
 		$discount = $order->get_order_discount();
+		$individual_discount = $discount / count( $items );
 
 		$i = 0;
 		foreach( $items as $item ) {
@@ -117,9 +115,10 @@ class WC_eBay_Enterprise_Affiliates {
 				$item_query_args[ 'QTY'  . $i ] = isset( $item['qty'] ) ? absint( $item['qty'] ) : 0;
 
 				/**
-				 * Get the product total
+				 * Get the product total, and deduct the average item discount from it.
+				 * absint() should always give us a number greater or equal to zero.
 				 */
-				$item_query_args[ 'TOTALAMOUNT' . $i ] = isset( $item['line_total'] ) ? $item['line_total'] : 0;
+				$item_query_args[ 'TOTALAMOUNT' . $i ] = isset( $item['line_total'] ) ? absint( $item['line_total'] - $individual_discount ) : 0;
 			}
 		}
 

@@ -65,6 +65,15 @@ class WC_eBay_Enterprise_Affiliates {
 			'type'     => 'text',
 			'desc_tip' =>  true,
 		);
+		
+		$options[] = array(
+			'title'    => __( 'Shipping Discount', 'wc-ebay' ),
+			'desc'     => __( 'If shipping is included in your prices, this discount will reduce the totals sent to EEAN so commissions are not paid on included shipping prices.', 'wc-ebay' ),
+			'id'       => 'woocommerce_ebay_affiliate_shipping_discount',
+			'default'  => '',
+			'type'     => 'text',
+			'desc_tip' =>  true,
+		);
 
 		$options[] = array(
 			'type'     => 'sectionend',
@@ -118,7 +127,9 @@ class WC_eBay_Enterprise_Affiliates {
 				 * Get the product total, and deduct the average item discount from it.
 				 * absint() should always give us a number greater or equal to zero.
 				 */
-				$item_query_args[ 'TOTALAMOUNT' . $i ] = isset( $item['line_total'] ) ? absint( $item['line_total'] - $individual_discount ) : 0;
+				$shipping_discount = 1 - ( floatval( WC_Admin_Settings::get_option( 'woocommerce_ebay_affiliate_shipping_discount', 0 ) ) / 100 );
+				$total = isset( $item['line_total'] ) ? $shipping_discount * ( $item['line_total'] - $individual_discount ) : 0;
+				$item_query_args[ 'TOTALAMOUNT' . $i ] = 0 < $total ? number_format( $total, 2, '.', '' ) : 0;
 			}
 		}
 

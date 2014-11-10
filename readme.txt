@@ -19,6 +19,7 @@ Easily integrate your eBay Enterprise Affiliate Network code into your WooCommer
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. Visit the WooCommerce General settings page to enter your partner ID.
 
 == Changelog ==
+
 = 1.1.0 - 11/10/2014 =
 * Add shipping discount // props @KamikazeXeX
 

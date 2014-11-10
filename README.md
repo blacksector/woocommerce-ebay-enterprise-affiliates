@@ -1,2 +1,2 @@
-woocommerce-ebay-enterprise-affiliates
+WooCommerce eBay Enterprise Affiliates
 ======================================

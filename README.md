@@ -1,12 +1,22 @@
 # WC eBay Enterprise Affiliates
+
 Contributors: patrickgarman, Omar Quazi (blacksector)
+
 Donate link: https://pmgarman.me/donate/
+
 Tags: woocommerce, wc, ebay, enterprise, affiliates
+
 Requires at least: 3.0
+
 Tested up to: 4.0
+
 Stable tag: 2.0.0
+
 License: GPLv3
+
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+
 
 Easily integrate your eBay Enterprise Affiliate Network code into your WooCommerce site.
 

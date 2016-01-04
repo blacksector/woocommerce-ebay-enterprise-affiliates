@@ -86,8 +86,12 @@ class WC_eBay_Enterprise_Affiliates {
 		/**
 		 * Get total order level discount and then get average discount splitting it across all products.
 		 */
-		$discount = $order->get_order_discount();
-		$individual_discount = $discount / count( $items );
+		
+		// coupons
+        	$coupons = '';
+        	foreach($order->get_used_coupons() as $coupon) {
+            		$item_query_args['COUPON']  .= $coupon;
+        	}
 		$i = 0;
 		foreach( $items as $item ) {
 			$i++;
@@ -108,8 +112,6 @@ class WC_eBay_Enterprise_Affiliates {
 				 * Get the product total, and deduct the average item discount from it.
 				 * absint() should always give us a number greater or equal to zero.
 				 */
-				$shipping_discount = 1 - ( floatval( WC_Admin_Settings::get_option( 'woocommerce_ebay_affiliate_shipping_discount', 0 ) ) / 100 );
-				$total = isset( $item['line_total'] ) ? $shipping_discount * ( $item['line_total'] - $individual_discount ) : 0;
 				$item_query_args[ 'ITEM_PRICE' . $i ] = 0 < $total ? number_format( $total, 2, '.', '' ) : 0;
 			}
 		}
